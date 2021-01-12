@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 public class MainFragment extends Fragment {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(
@@ -31,9 +38,20 @@ public class MainFragment extends Fragment {
         //        .navigate(R.id.action_MainFragment_to_OptionsFragment);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Add your menu entries here
-        super.onCreateOptionsMenu(menu, inflater);
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_options) {
+            NavHostFragment.findNavController(MainFragment.this)
+                    .navigate(R.id.action_MainFragment_to_OptionsFragment);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
