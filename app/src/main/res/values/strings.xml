@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Names</string>
+    <string name="action_options">Options</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="main_fragment_label">Main Fragment</string>
+    <string name="options_fragment_label">Options Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+</resources>
