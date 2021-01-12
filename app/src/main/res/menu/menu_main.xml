@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.names.MainActivity">
     <item
-        android:id="@+id/action_options"
+        android:id="@+id/action_alphabetically"
         android:orderInCategory="100"
-        android:title="@string/action_options"
+        android:title="Sort Alphabetically"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_numerically"
+        android:orderInCategory="100"
+        android:title="Sort Numerically"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_total"
+        android:orderInCategory="100"
+        android:title="Total amount of all names"
         app:showAsAction="never" />
 </menu>

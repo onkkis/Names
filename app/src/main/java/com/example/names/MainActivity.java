@@ -40,7 +40,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_options) {
+        if (id == R.id.action_alphabetically) {
+            return false;
+        }
+        if (id == R.id.action_numerically) {
+            return false;
+        }
+        if (id == R.id.action_total) {
             return false;
         }
 

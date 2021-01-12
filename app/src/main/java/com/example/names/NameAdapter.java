@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.List;
+
 public class NameAdapter extends RecyclerView.Adapter<NameAdapter.ViewHolder>{
 
     private Context context;
@@ -50,6 +52,11 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.ViewHolder>{
         if (jsonArray != null)
             return jsonArray.length();
         else return 0;
+    }
+
+    public void resetValues(JSONArray jsonArray){
+        this.jsonArray = jsonArray;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
