@@ -84,19 +84,10 @@ public class MainFragment extends Fragment {
                 Toast.makeText(getActivity(), "Please fill out search field.",
                         Toast.LENGTH_LONG).show();
             }else {
-                for(int i = 0;i<jsonArray.length();i++){
-                    try {
-                        String temp = jsonArray.getJSONObject(i).getString("name");
-                        if(search_text.getText().toString().equals(temp)){
-                            String amount = jsonArray.getJSONObject(i).getString("amount");
-                            Toast.makeText(getActivity(),
-                                    "Name "+ search_text.getText().toString() + " found. Amount: " + amount,
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        jsonArray.getJSONObject(i).getString("name");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    searchUser(jsonArray,search_text.getText().toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -125,6 +116,13 @@ public class MainFragment extends Fragment {
             return true;
         }
         if (id == R.id.action_total) {
+            try {
+                Toast.makeText(getActivity(),
+                        "Total amount of all names: "+ getTotalAmount(jsonArray),
+                        Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
@@ -184,6 +182,37 @@ public class MainFragment extends Fragment {
             sortedJsonArray.put(jsonList.get(i));
         }
         return sortedJsonArray;
+    }
+
+    private void searchUser(JSONArray jsonArray, String search_text)throws JSONException{
+        boolean found = false;
+        for(int i = 0;i<jsonArray.length();i++){
+            if(!found){
+                String temp = jsonArray.getJSONObject(i).getString("name");
+                //If user is found set found == true and show user the information that was found.
+                if(search_text.equals(temp)){
+                    String amount = jsonArray.getJSONObject(i).getString("amount");
+                    Toast.makeText(getActivity(), "Name "+ search_text + " found. Amount: " + amount,
+                            Toast.LENGTH_LONG).show();
+                    found = true;
+                }
+            }
+        }
+
+        //If user was not found print search text and tell user that it was not found.
+        if(!found){
+            Toast.makeText(getActivity(),
+                    "Name "+ search_text + " not found.",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private int getTotalAmount(JSONArray jsonArray) throws JSONException {
+        int total = 0;
+        for(int i = 0;i<jsonArray.length();i++){
+            total += Integer.parseInt(jsonArray.getJSONObject(i).getString("amount"));
+        }
+        return total;
     }
 
 }
